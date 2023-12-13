@@ -1,0 +1,14 @@
+
+def myModel(train_x):
+
+        mymodel = keras.Sequential()
+	mymodel.add(Bidirectional(LSTM(20, return_sequences=True), input_shape=(20, train_x.shape[-1])))
+	mymodel.add(Dropout(rate=0.2))
+	mymodel.add(Bidirectional(LSTM(40, return_sequences = True)))
+	mymodel.add(Dropout(rate=0.2))
+	mymodel.add(Bidirectional(LSTM(20, return_sequences=False)))
+	mymodel.add(Dense(units=1))
+	mymodel.compile(loss='mean_squared_error', optimizer='adam')
+	return mymodel
+      
+
